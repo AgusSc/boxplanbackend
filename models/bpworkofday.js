@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var  BPGWorkOfDay = mongoose.BPGWorkOfDay;
 var BPGWorkOfDaySchema = new BPGWorkOfDay({
-    id:String,
+    idworkofday:String,
     date:Date,
     workouts:[Object]
 });

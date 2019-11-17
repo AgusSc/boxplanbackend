@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var contactSchema = new Schema({
+    iduser:String,
     name:String,
     lastname:String,
     mail: String,
@@ -11,6 +12,6 @@ var contactSchema = new Schema({
     groupsAdmin:[String]
 });
 
-var Contact = mongoose.model('Contacto', contactSchema);
+var Bpuser = mongoose.model('bpuser', contactSchema);
 console.log("se creo modelo");
-module.exports = Contact;
+module.exports = Bpuser;

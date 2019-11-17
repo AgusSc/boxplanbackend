@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var CPWeightLifting = mongoose.CPWeightLifting;
 
 var CPWeightLiftingSchema = new CPWeightLifting({
-    id:String,
+    idcpweightlifting:String,
     sets:Number,
     repetitions:Number,
     percentaje:Number,

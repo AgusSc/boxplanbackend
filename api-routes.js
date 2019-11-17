@@ -30,7 +30,7 @@ router.get('/getUsers',function(req,res)
 });
 */
 //EndPoint para insertar en la BD
-router.post('/insertContact/Contact',function(req,res)
+router.post('/insertContact/Bpuser',function(req,res)
 {
     console.log(req.body);
     apiController.insertContact(req,res);
@@ -43,9 +43,9 @@ router.post('/updateContact/Contact',function(req,res)
 });
 
 //EndPoint para eliminar en la BD
-router.delete('/deleteContact/Contact',function(req,res)
+router.delete('/deleteUser/Bpuser',function(req,res)
 {
-    apiController.deleteContacto(req,res);
+    apiController.deleteUser(req,res);
 });
 // Export API routes
 module.exports = router;

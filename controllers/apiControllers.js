@@ -88,11 +88,11 @@ let updateContacto = (req,res) =>
     
     });
 }
-
-let deleteContacto = (req,res)=>
+*/
+let deleteUser = (req,res)=>
 {
-    let id = { dni : req.body.dniEliminado};
-    Contactos.deleteOne(id, function(err)
+    let id = {iduser: req.body.iduser};
+    Contact.deleteOne(id, function(err)
     {
         res.status(200).send({estado:"Registro eliminado"}); //devuelvo resultado  
         (err)=>
@@ -104,6 +104,5 @@ let deleteContacto = (req,res)=>
            
    
 }
-*/
 //module.exports = {getContactos,insertContacto,updateContacto,deleteContacto,getContactosById};
-module.exports={insertContact,getUsers};
+module.exports={insertContact,getUsers,deleteUser};

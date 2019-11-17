@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var  BPGroup = mongoose.BPGroup;
 var BPGroupSchema = new BPGroup({
-    id:String,
+    idgroup:String,
     name:String,
     admins:[String],
     membersIds:[String],
