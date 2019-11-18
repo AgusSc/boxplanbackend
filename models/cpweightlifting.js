@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
-var CPWeightLifting = mongoose.CPWeightLifting;
+var Schema = mongoose.Schema;
 
-var CPWeightLiftingSchema = new CPWeightLifting({
+var CPWeightLiftingSchema = new Schema({
     idcpweightlifting:String,
     sets:Number,
     repetitions:Number,

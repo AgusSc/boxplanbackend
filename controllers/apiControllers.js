@@ -43,6 +43,27 @@ let getContactosById = (req, res) =>
       
 };
 */
+let getContactosByname = (req, res) =>
+{      
+ 
+    let idName = {name: req.body.name};
+    console.log(idName);
+    //Listar resultados
+    Contact.find(idName,function(err,todo)
+    {
+        (listUsers)=>
+        {
+            res.status(200).send(listUsers);   
+        },
+        (err)=>
+        {
+            res.status(500).send(err);
+            console.log(err);
+        }
+    })
+      
+};
+
 let insertContact = (req,res) =>
 {
     console.log(req.body);
@@ -105,4 +126,4 @@ let deleteUser = (req,res)=>
    
 }
 //module.exports = {getContactos,insertContacto,updateContacto,deleteContacto,getContactosById};
-module.exports={insertContact,getUsers,deleteUser};
+module.exports={insertContact,getUsers,deleteUser, getContactosByname};

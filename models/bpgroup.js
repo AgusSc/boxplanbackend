@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var  BPGroup = mongoose.BPGroup;
-var BPGroupSchema = new BPGroup({
+var  Schema = mongoose.Schema;
+var BPGroupSchema = new Schema({
     idgroup:String,
     name:String,
     admins:[String],
@@ -8,6 +8,6 @@ var BPGroupSchema = new BPGroup({
     members:[Object]   
 });
 
-var Bpgroup = mongoose.model('Bpgroup',BPGroupSchema);
+var Bpgroup = mongoose.model('bpgroup',BPGroupSchema);
 console.log("se creo modelo");
 module.exports = Bpgroup;

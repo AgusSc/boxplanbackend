@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var  BPGWorkOfDay = mongoose.BPGWorkOfDay;
-var BPGWorkOfDaySchema = new BPGWorkOfDay({
+var  Schema = mongoose.Schema;
+var BPGWorkOfDaySchema = new Schema({
     idworkofday:String,
     date:Date,
     workouts:[Object]
