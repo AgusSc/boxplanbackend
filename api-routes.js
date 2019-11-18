@@ -27,11 +27,19 @@ router.get('/getUsers',function(req,res)
 });
 
 
-//EndPoint para leer con filtro
+//EndPoint para leer con filtro nombre
 router.get('/getUsersName',function(req,res)
 {
     apiController.getContactosByname(req,res);
 });
+
+
+//EndPoint para leer con filtro key
+router.get('/searchUserbyKey',function(req,res)
+{
+    apiController.searchUserbyKey(req,res);
+});
+
 
 
 //EndPoint para leer con filtro
@@ -51,9 +59,9 @@ router.post('/insertContact/Bpuser',function(req,res)
 });
 
 //EndPoint para modificar usuario en la BD
-router.post('/updateContact/Contact',function(req,res)
+router.post('/updateContact/Bpuser',function(req,res)
 {
-    apiController.updateContacto(req,res);
+    apiController.updateContact(req,res);
 });
 
 //EndPoint para eliminar  usuario en la BD
@@ -77,6 +85,16 @@ router.delete('/deleteGroup/BpGroup',function(req,res)
 router.get('/getGroups',function(req,res)
 {
     apiGroup.getGroups(req,res);
+});
+router.get('/getGroups',function(req,res)
+{
+    apiGroup.getGroups(req,res);
+});
+
+
+router.get('/getGroupsByKey',function(req,res)
+{
+    apiGroup.searchGroupbyKey(req,res);
 });
 
 //PARA cpweightlifting!!!

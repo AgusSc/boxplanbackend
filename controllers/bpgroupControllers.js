@@ -55,4 +55,21 @@ let getGroups = (req, res) =>
     
   
 };
-module.exports={insertGroup,deleteGroup,getGroups};
+
+let searchGroupbyKey = (req, res) =>
+{   
+    let name = {name: {'$regex' : '.*' + req.body.key + '.*'}};  
+    Group.find(name,function(err,results)
+    {
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
+    });
+    
+}
+module.exports={insertGroup,deleteGroup,getGroups,searchGroupbyKey};

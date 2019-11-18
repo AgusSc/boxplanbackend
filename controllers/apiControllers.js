@@ -44,26 +44,38 @@ let getContactosById = (req, res) =>
 };
 */
 let getContactosByname = (req, res) =>
-{      
- 
-    let idName = {name: req.body.name};
-    console.log(idName);
-    //Listar resultados
-    Contact.find(idName,function(err,todo)
+{   
+    let name1 = {name:req.body.name};
+    Contact.find(name1,function(err,results)
     {
-        (listUsers)=>
-        {
-            res.status(200).send(listUsers);   
-        },
-        (err)=>
-        {
+        if(err){
             res.status(500).send(err);
             console.log(err);
         }
-    })
-      
-};
-
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
+    });
+    
+}
+let searchUserbyKey = (req, res) =>
+{   
+    let name = {name: {'$regex' : '.*' + req.body.key + '.*'}};  
+    let lastname = {lastname: {'$regex' : '.*' + req.body.key + '.*'}};
+    Contact.find({$or:[name,lastname]},function(err,results)
+    {
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
+    });
+    
+}
 let insertContact = (req,res) =>
 {
     console.log(req.body);
@@ -89,17 +101,14 @@ let insertContact = (req,res) =>
         }
     ) 
 }
-/*
-let updateContacto = (req,res) => 
+
+let updateContact = (req,res) => 
 {
-    let id = { dni : req.body.dniBuscado};
+    let id = {iduser: req.body.iduser};
    
     console.log("update",id);
-   // console.log(newContacto);
-    Contactos.findOneAndUpdate({ dni : req.body.dniBuscado},{$set : {nombre: req.body.newData.nombre}},{new:true},function(err)
+    Contact.findOneAndUpdate({ iduser : req.body.iduser},{$set : {name: req.body.name}},{new:true},function(err)
     {
-       //console.log("respuesta",res);
-       //let rta = {estado: "Ok"};
        res.status(200).send({estado:"Registro modificado"}); //devuelvo resultado query       
        (err)=>
         { 
@@ -109,7 +118,7 @@ let updateContacto = (req,res) =>
     
     });
 }
-*/
+
 let deleteUser = (req,res)=>
 {
     let id = {iduser: req.body.iduser};
@@ -126,4 +135,4 @@ let deleteUser = (req,res)=>
    
 }
 //module.exports = {getContactos,insertContacto,updateContacto,deleteContacto,getContactosById};
-module.exports={insertContact,getUsers,deleteUser, getContactosByname};
+module.exports={insertContact,getUsers,deleteUser, getContactosByname,searchUserbyKey,updateContact};
