@@ -14,8 +14,7 @@ var BPWorkoutSchema = new Schema({
             type: Schema.ObjectId,
             ref: "CPWeight"
         }
-    ],
-    documentId:String
+    ]
 });
 
 var BPWorkout = mongoose.model('bpworkout',BPWorkoutSchema);

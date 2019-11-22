@@ -4,8 +4,12 @@ var bpuser = mongoose.model('bpuser');
 var BPGroupSchema = new Schema({
     idgroup:String,
     name:String,
-    admins:[String],
-    membersIds:[String],
+    admins:[
+      {
+         type: Schema.ObjectId,
+         ref: "bpuser"
+      }
+    ],
     members:[
         { type: Schema.ObjectId,
            ref: "bpuser"

@@ -57,7 +57,10 @@ let getGroupsMembers = (req, res) =>
     Group.find(function(err,listGroup)
     {
         bpuser.populate(listGroup, {path: "members"},function(err, listGroup){
-        res.status(200).send(listGroup);
+            bpuser.populate(listGroup, {path: "admins"},function(err, listGroup){
+                res.status(200).send(listGroup);
+        
+            });
     });
     })
 };

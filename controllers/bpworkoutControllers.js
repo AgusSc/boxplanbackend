@@ -12,8 +12,7 @@ let insertBpworkout = (req,res) =>
         workoutDescription:req.body.workoutDescription,
         date:req.body.date,
         weightLifttingExercise:req.body.weightLifttingExercise,
-        weightLifttingSession:[req.body.weightLifttingSession],
-        documentId:req.body.documentId
+        weightLiftingSession:[req.body.weightLiftingSession]
     });
     newBpworkout.save().
     then
