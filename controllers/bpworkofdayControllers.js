@@ -1,6 +1,6 @@
 var BPworkofday = require('../models/bpworkofday');
 var bodyParser = require('body-parser');
-
+var bpworkout = require('../models/bpworkout');
 let insertBPworkofday= (req,res) =>
 {
     console.log(req.body);
@@ -34,9 +34,20 @@ let getBPworkofday = (req, res) =>
             console.log(err);
         }
     });
-   
+
+       
   
 };
+let getBPworkofdayworkouts = (req, res) =>
+{      
+    BPworkofday.find(function(err,listBPworkofday)
+    {
+        bpworkout.populate(listBPworkofday, {path: "workouts"},function(err, listBPworkofday){
+        res.status(200).send(listBPworkofday);
+    });
+    })
+};
+
 let deleteBPworkofday = (req,res)=>
 {
     let id = {idworkofday: req.body.idworkofday};
@@ -52,4 +63,4 @@ let deleteBPworkofday = (req,res)=>
            
    
 }
-module.exports={insertBPworkofday,getBPworkofday,deleteBPworkofday};
+module.exports={insertBPworkofday,getBPworkofday,deleteBPworkofday,getBPworkofdayworkouts};

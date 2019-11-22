@@ -3,7 +3,8 @@ let router = require('express').Router();
 let apiController = require('./controllers/apiControllers');
 let apiGroup = require('./controllers/bpgroupControllers');
 let apiWeightLifting=require('./controllers/cpweightliftingControllers');
-let apibpworkofday=require('./controllers/bpworkofdayControllers');       
+let apibpworkofday=require('./controllers/bpworkofdayControllers');     
+let apiworkout =require('./controllers/bpworkoutControllers');  
     
 
 // Set default API response
@@ -86,10 +87,11 @@ router.get('/getGroups',function(req,res)
 {
     apiGroup.getGroups(req,res);
 });
-router.get('/getGroups',function(req,res)
+router.get('/getGroupsMembers',function(req,res)
 {
-    apiGroup.getGroups(req,res);
+    apiGroup.getGroupsMembers(req,res);
 });
+
 
 
 router.get('/getGroupsByKey',function(req,res)
@@ -127,6 +129,27 @@ router.get('/getBPworkofday',function(req,res)
 {
     console.log("leer");
     apibpworkofday.getBPworkofday(req,res);
+});
+router.get('/getBPworkofdayworkouts',function(req,res)
+{
+    apibpworkofday.getBPworkofdayworkouts(req,res);
+});
+
+
+//PARA bpworkout!!!
+router.post('/insertBPworkout',function(req,res)
+{
+    console.log(req.body);
+    apiworkout.insertBpworkout(req,res);
+});
+router.get('/getBPworkout',function(req,res)
+{
+    console.log("leer");
+    apiworkout.getBPworkout(req,res);
+});
+router.get('/getWorkoutCpWeightLifting',function(req,res)
+{
+    apiworkout.getWorkoutCpWeightLifting(req,res);
 });
 
 // Export API routes

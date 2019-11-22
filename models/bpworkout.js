@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
-var  BPWork = mongoose.BPwork;
-var BPWorkoutSchema = new BPWork({
+var CPWeight = mongoose.model('CPWeight');
+var  Schema = mongoose.Schema;
+var BPWorkoutSchema = new Schema({
     idbpworkout:String,
     wodType:Number,
     workoutTime:Number,
@@ -8,11 +9,15 @@ var BPWorkoutSchema = new BPWork({
     workoutDescription:String,
     date: Date,
     weightLifttingExercise:String,
-    weightLifttingSession:[String],
-    documentId:String,
-    weightLiftingSession :[Object]
+    weightLiftingSession:[
+        { 
+            type: Schema.ObjectId,
+            ref: "CPWeight"
+        }
+    ],
+    documentId:String
 });
 
-var BPWorkout = mongoose.model('BPWorkout',BPWorkoutSchema);
+var BPWorkout = mongoose.model('bpworkout',BPWorkoutSchema);
 console.log("se creo modelo");
 module.exports = BPWorkout;

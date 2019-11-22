@@ -1,5 +1,6 @@
 var Group = require('../models/bpgroup');
 var bodyParser = require('body-parser');
+var bpuser =require('../models/bpuser');
 
 
 let insertGroup = (req,res) =>
@@ -47,14 +48,21 @@ let getGroups = (req, res) =>
     {
         
         res.status(200).send(listGroup);
-        (err)=>{
-            res.status(500).send(err);
-            console.log(err);
-        }
     });
     
   
 };
+let getGroupsMembers = (req, res) =>
+{      
+    Group.find(function(err,listGroup)
+    {
+        bpuser.populate(listGroup, {path: "members"},function(err, listGroup){
+        res.status(200).send(listGroup);
+    });
+    })
+};
+
+
 
 let searchGroupbyKey = (req, res) =>
 {   
@@ -72,4 +80,4 @@ let searchGroupbyKey = (req, res) =>
     });
     
 }
-module.exports={insertGroup,deleteGroup,getGroups,searchGroupbyKey};
+module.exports={insertGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers};
