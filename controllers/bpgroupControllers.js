@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var bpuser =require('../models/bpuser');
 
 
-let insertGroup = (req,res) =>
+let createGroup = (req,res) =>
 {
     console.log(req.body);
     var newGroup = Group({
@@ -83,4 +83,4 @@ let searchGroupbyKey = (req, res) =>
     });
     
 }
-module.exports={insertGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers};
+module.exports={createGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers};

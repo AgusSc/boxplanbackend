@@ -19,7 +19,23 @@ let getUsers = (req, res) =>
     });
            
 };
-
+let loginUser = (req, res) =>
+{   
+    let mail = {mail:req.body.mail};
+    let password = {password:req.body.password};
+    Contact.find({$or:[mail,password]},function(err,results)
+    {
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
+    });
+    
+}
 /*
 let getContactosById = (req, res) =>
 {      
@@ -44,6 +60,8 @@ let getContactosById = (req, res) =>
       
 };
 */
+/*getContactosByname lo usamos para probar algo,de ultima se borra*/
+
 let getContactosByname = (req, res) =>
 {   
     let name1 = {name:req.body.name};
@@ -77,7 +95,7 @@ let searchUserbyKey = (req, res) =>
     });
     
 }
-let insertContact = (req,res) =>
+let createUser = (req,res) =>
 {
     console.log(req.body);
     var newContact = Contact({
@@ -103,7 +121,7 @@ let insertContact = (req,res) =>
     ) 
 }
 
-let updateContact = (req,res) => 
+let updateUser = (req,res) => 
 {
     let id = {iduser: req.body.iduser};
    
@@ -136,4 +154,4 @@ let deleteUser = (req,res)=>
    
 }
 //module.exports = {getContactos,insertContacto,updateContacto,deleteContacto,getContactosById};
-module.exports={insertContact,getUsers,deleteUser, getContactosByname,searchUserbyKey,updateContact};
+module.exports={createUser,getUsers,deleteUser, getContactosByname,searchUserbyKey,updateUser,loginUser};

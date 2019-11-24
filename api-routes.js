@@ -26,7 +26,11 @@ router.get('/getUsers',function(req,res)
     console.log("leer");
     apiController.getUsers(req,res);
 });
-
+router.get('/loginUser',function(req,res)
+{
+    console.log("leer");
+    apiController.loginUser(req,res);
+});
 
 //EndPoint para leer con filtro nombre
 router.get('/getUsersName',function(req,res)
@@ -53,16 +57,16 @@ router.get('/searchUserbyKey',function(req,res)
 */
 
 //EndPoint para insertar  usuario en la BD
-router.post('/insertContact/Bpuser',function(req,res)
+router.post('/createUser/Bpuser',function(req,res)
 {
     console.log(req.body);
-    apiController.insertContact(req,res);
+    apiController.createUser(req,res);
 });
 
 //EndPoint para modificar usuario en la BD
-router.post('/updateContact/Bpuser',function(req,res)
+router.post('/updateUser/Bpuser',function(req,res)
 {
-    apiController.updateContact(req,res);
+    apiController.updateUser(req,res);
 });
 
 //EndPoint para eliminar  usuario en la BD
@@ -73,9 +77,9 @@ router.delete('/deleteUser/Bpuser',function(req,res)
 
 //PARA BPGROUP!!!
 //EndPoint para crear grupo en la BD
-router.post('/insertGroup/BpGroup',function(req,res)
+router.post('/createGroup/BpGroup',function(req,res)
 {
-    apiGroup.insertGroup(req,res);
+    apiGroup.createGroup(req,res);
 });
 //EndPoint para eliminar  grupo en la BD
 router.delete('/deleteGroup/BpGroup',function(req,res)
@@ -91,9 +95,6 @@ router.get('/getGroupsMembers',function(req,res)
 {
     apiGroup.getGroupsMembers(req,res);
 });
-
-
-
 router.get('/getGroupsByKey',function(req,res)
 {
     apiGroup.searchGroupbyKey(req,res);
@@ -116,10 +117,10 @@ router.get('/getWeightLifting',function(req,res)
 });
 
 //PARA bpworkofday!!!
-router.post('/insertBPworkofday',function(req,res)
+router.post('/createWorkOfDay',function(req,res)
 {
     console.log(req.body);
-    apibpworkofday.insertBPworkofday(req,res);
+    apibpworkofday.createWorkOfDay(req,res);
 });
 router.delete('/deleteBPworkofday',function(req,res)
 {
@@ -137,10 +138,10 @@ router.get('/getBPworkofdayworkouts',function(req,res)
 
 
 //PARA bpworkout!!!
-router.post('/insertBPworkout',function(req,res)
+router.post('/createWorkout',function(req,res)
 {
     console.log(req.body);
-    apiworkout.insertBpworkout(req,res);
+    apiworkout.createWorkout(req,res);
 });
 router.get('/getBPworkout',function(req,res)
 {

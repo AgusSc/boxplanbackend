@@ -1,7 +1,7 @@
 var WeightLifting = require('../models/cpweightlifting');
 var bodyParser = require('body-parser');
 
-let insertWeightLifting = (req,res) =>
+let createWeightlifting = (req,res) =>
 {
     console.log(req.body);
     var newweightLifting = WeightLifting({
@@ -54,4 +54,4 @@ let deleteWeightLifting = (req,res)=>
            
    
 }
-module.exports={insertWeightLifting,getWeightLifting,deleteWeightLifting};
+module.exports={createWeightlifting,getWeightLifting,deleteWeightLifting};

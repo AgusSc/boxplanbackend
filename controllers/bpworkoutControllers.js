@@ -1,7 +1,7 @@
 var BPWorkout = require('../models/bpworkout');
 var bodyParser = require('body-parser');
 var weightlifting = require('../models/cpweightlifting');
-let insertBpworkout = (req,res) =>
+let createWorkout = (req,res) =>
 {
     console.log(req.body);
     var newBpworkout = BPWorkout({
@@ -49,4 +49,19 @@ let getWorkoutCpWeightLifting = (req, res) =>
     })
 };
 
-module.exports={insertBpworkout,getBPworkout,getWorkoutCpWeightLifting};
+let deleteWeightLifting = (req,res)=>
+{
+    let id = {idbpworkout: req.body.idbpworkout};
+    BPWorkout.deleteOne(id, function(err)
+    {
+        res.status(200).send({estado:"Registro eliminado"});
+        (err)=>
+        { 
+            res.status(500).send(err);
+            console.log(err);
+        }      
+    });
+           
+   
+}
+module.exports={createWorkout,getBPworkout,getWorkoutCpWeightLifting,deleteWeightLifting};

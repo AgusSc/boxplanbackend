@@ -1,7 +1,7 @@
 var BPworkofday = require('../models/bpworkofday');
 var bodyParser = require('body-parser');
 var bpworkout = require('../models/bpworkout');
-let insertBPworkofday= (req,res) =>
+let createWorkOfDay= (req,res) =>
 {
     console.log(req.body);
     var newBPworkofday = BPworkofday({
@@ -63,4 +63,4 @@ let deleteBPworkofday = (req,res)=>
            
    
 }
-module.exports={insertBPworkofday,getBPworkofday,deleteBPworkofday,getBPworkofdayworkouts};
+module.exports={createWorkOfDay,getBPworkofday,deleteBPworkofday,getBPworkofdayworkouts};
