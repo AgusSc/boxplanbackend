@@ -46,12 +46,82 @@ let getGroups = (req, res) =>
     console.log("llegue a leer");
     Group.find(function(err,listGroup)
     {
-        
+        //listGroup.push(Group);
         res.status(200).send(listGroup);
     });
     
   
 };
+
+
+/*let Addmember = (req,res) => 
+{
+    //let id = {idgroup: req.body.idgroup};
+    Group.findOneAndUpdate({idgroup:req.body.idgroup},{$push:{members:req.body.members}},{ new: true },function(err,listGroup)
+    {
+           // res.status(200).send(listGroup);
+           
+           console.log(listGroup);
+ 
+        //devuelvo resultado query       
+       (err)=>
+        { 
+            res.status(500).send(err);
+            console.log(err);
+        }
+    
+    });
+}  
+*/
+let Addmember = (req,res) => 
+{
+    //let id = {idgroup: req.body.idgroup};
+    Group.findOne({idgroup:req.body.idgroup},{ },function(err1,group)
+    {
+          var newMembers=[];
+        //  newMembers.push(req.body.members);
+         newMembers=group.members.push(req.body.members);
+          console.log(newMembers);
+           group.updateOne({idgroup:req.body.idgroup},{$set:{members:newMembers}},function(err2,updategroup)
+           {
+             res.status(200).send(updategroup);
+             //console.log(updategroup);
+             (err2)=>
+             { 
+                 res.status(500).send(err2);
+                 console.log(err2);
+             }
+           });
+          
+           (err1)=>
+           { 
+               res.status(500).send(err1);
+               console.log(err1);
+           }
+
+        //devuelvo resultado query       
+  
+    });
+}  
+let removeMember = (req,res) => 
+{
+    let id = {idgroup : req.body.idgroup};
+    var options = ({members:req.body.members});
+    Group.findOneAndDelete({id},function(err)
+    {
+       res.status(200).send({estado:"Usuario eliminado al grupo"}); 
+       console.log(id);
+       console.log(options);
+       //devuelvo resultado query       
+       (err)=>
+        { 
+            res.status(500).send(err);
+            console.log(err);
+        }
+    
+    });
+}
+
 let getGroupsMembers = (req, res) =>
 {      
     Group.find(function(err,listGroup)
@@ -83,4 +153,4 @@ let searchGroupbyKey = (req, res) =>
     });
     
 }
-module.exports={createGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers};
+module.exports={createGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers,Addmember,removeMember};

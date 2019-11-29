@@ -99,7 +99,14 @@ router.get('/getGroupsByKey',function(req,res)
 {
     apiGroup.searchGroupbyKey(req,res);
 });
-
+router.post('/Addmember',function(req,res)
+{
+    apiGroup.Addmember(req,res);
+});
+router.delete('/removeMember',function(req,res)
+{
+    apiGroup.removeMember(req,res);
+});
 //PARA cpweightlifting!!!
 router.post('/insertWeightLifting',function(req,res)
 {

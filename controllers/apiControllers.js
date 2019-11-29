@@ -1,7 +1,7 @@
 var Contact = require('../models/bpuser');
 var bodyParser = require('body-parser');
 
-   
+
 let getUsers = (req, res) =>
 {      
     console.log("llegue a leer");
@@ -23,7 +23,7 @@ let loginUser = (req, res) =>
 {   
     let mail = {mail:req.body.mail};
     let password = {password:req.body.password};
-    Contact.find({$or:[mail,password]},function(err,results)
+    Contact.find({$and:[mail,password]},function(err,results)
     {
         if(err){
             res.status(500).send(err);
@@ -110,7 +110,7 @@ let createUser = (req,res) =>
     then
     (
         (newContact)=>
-        {
+        {console.log(newContact);
             res.status(200).send(newContact); 
         },
         (err)=>
@@ -137,6 +137,7 @@ let updateUser = (req,res) =>
     
     });
 }
+
 
 let deleteUser = (req,res)=>
 {
