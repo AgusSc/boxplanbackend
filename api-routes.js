@@ -26,7 +26,7 @@ router.get('/getUsers',function(req,res)
     console.log("leer");
     apiController.getUsers(req,res);
 });
-router.get('/loginUser',function(req,res)
+router.post('/loginUser',function(req,res)
 {
     console.log("leer");
     apiController.loginUser(req,res);
