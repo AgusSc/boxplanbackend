@@ -5,13 +5,10 @@ var bodyParser = require('body-parser');
 let getUsers = (req, res) =>
 {      
     console.log("llegue a leer");
-    //Listar resultados
     Contact.find(function(err,listUsers)
     {
-        //devuelvo resultado query   
-        //console.log(listaContactos); 
+
         res.status(200).send(listUsers);
-        //si hay error
         (err)=>{
             res.status(500).send(err);
             console.log(err);
@@ -21,9 +18,7 @@ let getUsers = (req, res) =>
 };
 let loginUser = (req, res) =>
 {   
-    let mail = {mail:req.body.mail};
-    let password = {password:req.body.password};
-    Contact.find({$and:[mail,password]},function(err,results)
+    Contact.findOne({mail:req.body.mail,password:req.body.password},function(err,results)
     {
         if(err){
             res.status(500).send(err);
@@ -36,32 +31,6 @@ let loginUser = (req, res) =>
     });
     
 }
-/*
-let getContactosById = (req, res) =>
-{      
-    console.log("llegue a leer con filtro");
-    //Obtener id busqueda
-    let idBusqueda = {dni: req.body.dniBuscado};
-    console.log(idBusqueda);
-    //Listar resultados
-    Contactos.find(idBusqueda,function(err,todo)
-    {
-        (listaContactos)=>
-        {
-            res.status(200).send(listaContactos); //devuelvo resultado query   
-            //console.log(listaContactos);    
-        },
-        (err)=>
-        {
-            res.status(500).send(err);
-            console.log(err);
-        }
-    })
-      
-};
-*/
-/*getContactosByname lo usamos para probar algo,de ultima se borra*/
-
 let getContactosByname = (req, res) =>
 {   
     let name1 = {name:req.body.name};
@@ -154,5 +123,4 @@ let deleteUser = (req,res)=>
            
    
 }
-//module.exports = {getContactos,insertContacto,updateContacto,deleteContacto,getContactosById};
 module.exports={createUser,getUsers,deleteUser, getContactosByname,searchUserbyKey,updateUser,loginUser};

@@ -79,13 +79,11 @@ let Addmember = (req,res) =>
     Group.findOne({idgroup:req.body.idgroup},{ },function(err1,group)
     {
           var newMembers=[];
-        //  newMembers.push(req.body.members);
          newMembers=group.members.push(req.body.members);
           console.log(newMembers);
            group.updateOne({idgroup:req.body.idgroup},{$set:{members:newMembers}},function(err2,updategroup)
            {
              res.status(200).send(updategroup);
-             //console.log(updategroup);
              (err2)=>
              { 
                  res.status(500).send(err2);

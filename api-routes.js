@@ -47,15 +47,6 @@ router.get('/searchUserbyKey',function(req,res)
 
 
 
-//EndPoint para leer con filtro
-
-/*router.post('/leerAgenda/?idBusqueda',function(req,res)
-{
-    console.log("leer con filtro");
-    apiController.getContactosById(req,res);
-});
-*/
-
 //EndPoint para insertar  usuario en la BD
 router.post('/createUser/Bpuser',function(req,res)
 {
