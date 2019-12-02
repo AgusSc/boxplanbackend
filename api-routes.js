@@ -86,6 +86,11 @@ router.get('/getGroupsMembers',function(req,res)
 {
     apiGroup.getGroupsMembers(req,res);
 });
+
+router.get('/getGroupsAdmins',function(req,res)
+{
+    apiGroup.getGroupsAdmins(req,res);
+});
 router.get('/getGroupsByKey',function(req,res)
 {
     apiGroup.searchGroupbyKey(req,res);
@@ -98,7 +103,15 @@ router.delete('/removeMember',function(req,res)
 {
     apiGroup.removeMember(req,res);
 });
+
+
+//
+
+
+
 //PARA cpweightlifting!!!
+
+
 router.post('/insertWeightLifting',function(req,res)
 {
     console.log(req.body);

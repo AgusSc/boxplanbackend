@@ -73,6 +73,7 @@ let getGroups = (req, res) =>
     });
 }  
 */
+
 let Addmember = (req,res) => 
 {
     //let id = {idgroup: req.body.idgroup};
@@ -100,7 +101,7 @@ let Addmember = (req,res) =>
         //devuelvo resultado query       
   
     });
-}  
+} 
 let removeMember = (req,res) => 
 {
     let id = {idgroup : req.body.idgroup};
@@ -122,18 +123,55 @@ let removeMember = (req,res) =>
 
 let getGroupsMembers = (req, res) =>
 {      
-    Group.find(function(err,listGroup)
+    let members = {members:req.body.members};  
+    Group.find(members,function(err,results)
     {
-        bpuser.populate(listGroup, {path: "members"},function(err, listGroup){
-            bpuser.populate(listGroup, {path: "admins"},function(err, listGroup){
-                res.status(200).send(listGroup);
-        
-            });
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
     });
-    })
 };
 
+let getGroupsAdmins = (req, res) =>
+{        
+    Group.find({admins:req.body.admins},function(err,results)
+    {
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
+    });
+};
 
+/*let Addmember = (req,res) => 
+{
+    const id = req.body.idgroup;
+    Group.findOne(id,function(err,results)
+    {
+        var newMembers=[];
+        newMembers=Group.members.push(req.body.members);
+
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
+    });
+      
+}  
+*/
 
 let searchGroupbyKey = (req, res) =>
 {   
@@ -151,4 +189,4 @@ let searchGroupbyKey = (req, res) =>
     });
     
 }
-module.exports={createGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers,Addmember,removeMember};
+module.exports={createGroup,deleteGroup,getGroups,searchGroupbyKey,getGroupsMembers,Addmember,removeMember,getGroupsAdmins};
