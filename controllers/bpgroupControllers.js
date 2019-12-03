@@ -125,6 +125,7 @@ let removeMember = (req,res) =>
 
 let getGroupsMembers = (req, res) =>
 {   
+
     let members = {members:req.body.members};  
     Group.find(members,function(err,results)
     {
@@ -141,20 +142,20 @@ let getGroupsMembers = (req, res) =>
 
 let getGroupsAdmins = (req, res) =>
 {        
-    Group.findOneAndUpdate({"_id":req.body.idgroup},{"$push": {"members": req.body.members} },{new: true, safe: true, upsert: true }).then((result) => {
-        return res.status(201).json({
-            status: "Success",
-            message: "Resources Are Created Successfully",
-            data: result
-        });
-    }).catch((error) => {
-        return res.status(500).json({
-            status: "Failed",
-            message: "Database Error",
-            data: error
-        });
+    let admins = {admins:req.body.admins};  
+    Group.find(admins,function(err,results)
+    {
+        if(err){
+            res.status(500).send(err);
+            console.log(err);
+        }
+        else{
+            res.status(200).send(results);  
+            console.log(results);    
+        }
     });
 };
+
 
 let Addmember = (req,res) => 
 {
