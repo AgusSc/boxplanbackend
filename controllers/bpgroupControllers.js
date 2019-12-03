@@ -126,7 +126,7 @@ let removeMember = (req,res) =>
 let getGroupsMembers = (req, res) =>
 {   
 
-    let members = {members:req.body.members};  
+    let members = {members:req.body.userID};  
     Group.find(members,function(err,results)
     {
         if(err){
@@ -142,7 +142,7 @@ let getGroupsMembers = (req, res) =>
 
 let getGroupsAdmins = (req, res) =>
 {        
-    let admins = {admins:req.body.admins};  
+    let admins = {admins:req.body.userID};  
     Group.find(admins,function(err,results)
     {
         if(err){
