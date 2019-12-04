@@ -99,7 +99,7 @@ router.post('/Addmember',function(req,res)
 {
     apiGroup.Addmember(req,res);
 });
-router.delete('/removeMember',function(req,res)
+router.post('/removeMember',function(req,res)
 {
     apiGroup.removeMember(req,res);
 });

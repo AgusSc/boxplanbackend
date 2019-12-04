@@ -106,23 +106,20 @@ let getGroups = (req, res) =>
 
 let removeMember = (req,res) => 
 {
-    let id = {idgroup : req.body.idgroup};
-    var options = ({members:req.body.members});
-    Group.findOneAndDelete({id},function(err)
-    {
-       res.status(200).send({estado:"Usuario eliminado al grupo"}); 
-       console.log(id);
-       console.log(options);
-       //devuelvo resultado query       
-       (err)=>
-        { 
-            res.status(500).send(err);
-            console.log(err);
-        }
-    
+    Group.findOneAndUpdate({"_id":req.body.idgroup},{"$pull": {"members": req.body.members}}).then((result) => {
+        return res.status(202).json({
+            status: "Success",
+            message: "Resources Are Deleted Successfully",
+            data: result
+        });
+    }).catch((error) => {
+        return res.status(500).json({
+            status: "Failed",
+            message: "Database Error",
+            data: error
+        });
     });
 }
-
 let getGroupsMembers = (req, res) =>
 {   
 
